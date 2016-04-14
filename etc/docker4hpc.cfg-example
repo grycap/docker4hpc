@@ -1,0 +1,66 @@
+[DEFAULTS]
+# This section indicates the default parameters for the container
+# * the default example maps the /etc/passwd, /etc/group files and /home folder, in order to be able to execute the applications using the same users in the system
+
+# The docker_image parameter indicates the name of the image that will be used to run the container.
+docker_image=ubuntu:latest
+
+# You can map as many files as needed. These files belong to the internal node, but it will appear as theirselves inside the container
+# * you can use map_file prefix and different suffixes: e.g. map_file1, map_file5, map_file15...
+map_file1=/etc/passwd
+map_file2=/etc/group
+
+# You can map as many folders as needed. These files belong to the internal node, but it will appear as theirselves inside the container
+# * The permissions, user ids and gids of the files and folders inside the container will be the same that those in the internal node
+map_folder1=/home
+
+# You can map as many devices as needed. These devices belong to the internal node, but it will appear as theirselves inside the container
+# * This is intended for GPUs, block devices, etc.
+map_device1=
+
+# You can pass options to the docker run command (e.g. --rm)
+docker_options=--rm
+
+[QUEUE queue2]
+# You can specify particular options for each queue to which the jobs can be submitted by creating one block called [QUEUE <queuename>]
+# * Then you can overwrite the docker_image and add other mapped files, folders, etc.
+docker_image=fedora:10
+
+# The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
+#   If you want to remove the mapped files at any point, you can set the clear_map_file to "Yes" and the list will be started over. E.g. if you set clear_map_files to Yes in QUEUE section, the mapped files will be those stated in the specific queue, the specific user and the specific app
+#   The default value is "No"
+# clear_map_file=Yes
+
+[QUEUEIMAGES]
+# This is a mechanism to easily overwrite the docker_image field. If you only want to set the docker_image field for a specific queue, you can use this section in the form <queuename>=<dockerimage>
+queue1=ubuntu14:04
+
+[USER ubuntu]
+# You can specify particular options for each queue to which the jobs can be submitted by creating one block called [QUEUE <queuename>]
+# * Then you can overwrite the docker_image and add other mapped files, folders, etc.
+docker_image=fedora:10
+docker_image=ubuntu:latest
+map_folder_1=/home/ubuntu
+
+# The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
+#   If you want to remove the mapped files at any point, you can set the clear_map_file to "Yes" and the list will be started over. E.g. if you set clear_map_files to Yes in QUEUE section, the mapped files will be those stated in the specific queue, the specific user and the specific app
+#   The default value is "No"
+# clear_map_file=Yes
+
+[USERIMAGES]
+# This is a mechanism to easily overwrite the docker_image field. If you only want to set the docker_image field for a specific user, you can use this section in the form <username>=<dockerimage>
+ubuntu=ubuntu:latest
+
+[APP /path/to/app2]
+# You can specify particular options for each app in a script by creating one block called [QUEUE <queuename>]
+# * Then you can overwrite the docker_image and add other mapped files, folders, etc.
+docker_image=centos6:6
+
+# The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
+#   If you want to remove the mapped files at any point, you can set the clear_map_file to "Yes" and the list will be started over. E.g. if you set clear_map_files to Yes in QUEUE section, the mapped files will be those stated in the specific queue, the specific user and the specific app
+#   The default value is "No"
+# clear_map_file=Yes
+
+[APPIMAGES]
+# This is a mechanism to easily overwrite the docker_image field for an application. If you only want to set the docker_image field for a specific application, you can use this section in the form <app path>=<dockerimage>
+/path/to/app1=ubuntu12:04
