@@ -36,7 +36,7 @@ You can test ```Docker4HPC``` for Torque under a virtual environment, using [ec4
 
 1. Install ```ec4docker``` and get the ec4docker command in the path
 2. Generate the docker images in the front-end:
-  ```
+```bash
 docker build -t ec4docker-s:frontend -f /path/to/ec4docker/frontend/Dockerfile.static /path/to/ec4docker/frontend
 docker build -t docker4hpc:frontend -f /path/to/ec4docker/frontend/Dockerfile.torque-s /path/to/ec4docker/frontend
 docker build -t ec4docker:wn -f /path/to/ec4docker/wn/Dockerfile.wn /path/to/ec4docker/wn
@@ -44,6 +44,8 @@ docker build -t ec4docker-torque:wn -f /path/to/ec4docker/wn/Dockerfile.torque /
 docker build -t docker4hpc:wn -f /opt/docker4hpc/devel-env/Dockerfile.docker4hpc.wn /opt/docker4hpc/devel-env/
 ```
 3. Launch the virtual cluster
-```ec4docker -f /opt/docker4hpc/devel-env/ec4docker-torque.config```
+```bash
+ec4docker -f /opt/docker4hpc/devel-env/ec4docker-torque.config
+```
 4. Enter in the front-end and configure docker4hpc according to the instructions above.
 
