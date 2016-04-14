@@ -42,7 +42,7 @@ def set_defaults(values):
     else:
         values['clean_map_device'] = False
 
-def build_config_tree(config_files = ["/etc/docker4hpc.cfg", "./etc/docker4hpc.cfg"]):
+def build_config_tree(config_files = ["/etc/docker4hpc.cfg"]):
     config = ConfigParser.ConfigParser()
     config.read(config_files)
     CONFIG_TREE = {}
@@ -57,7 +57,6 @@ def build_config_tree(config_files = ["/etc/docker4hpc.cfg", "./etc/docker4hpc.c
                 element_name = (section_name[L:]).strip()
                 values[element_name] = read_section(config, section_name)
                 set_defaults(values)
-                print values
             
         CONFIG_TREE[kw] = values
         

@@ -24,7 +24,7 @@ docker_options=--rm
 [QUEUE queue2]
 # You can specify particular options for each queue to which the jobs can be submitted by creating one block called [QUEUE <queuename>]
 # * Then you can overwrite the docker_image and add other mapped files, folders, etc.
-docker_image=fedora:10
+# docker_image=fedora:10
 
 # The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
 #   If you want to remove the mapped files at any point, you can set the clear_map_file to "Yes" and the list will be started over. E.g. if you set clear_map_files to Yes in QUEUE section, the mapped files will be those stated in the specific queue, the specific user and the specific app
@@ -38,8 +38,7 @@ queue1=ubuntu14:04
 [USER ubuntu]
 # You can specify particular options for each queue to which the jobs can be submitted by creating one block called [QUEUE <queuename>]
 # * Then you can overwrite the docker_image and add other mapped files, folders, etc.
-docker_image=fedora:10
-docker_image=ubuntu:latest
+# docker_image=ubuntu:latest
 map_folder_1=/home/ubuntu
 
 # The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
@@ -49,12 +48,12 @@ map_folder_1=/home/ubuntu
 
 [USERIMAGES]
 # This is a mechanism to easily overwrite the docker_image field. If you only want to set the docker_image field for a specific user, you can use this section in the form <username>=<dockerimage>
-ubuntu=ubuntu:latest
+docker_image=ubuntu:latest
 
 [APP /path/to/app2]
 # You can specify particular options for each app in a script by creating one block called [QUEUE <queuename>]
 # * Then you can overwrite the docker_image and add other mapped files, folders, etc.
-docker_image=centos6:6
+docker_image=centos:6.6
 
 # The order in which the files, folders and devices are mapped is: DEFAULTS + QUEUE + USER + APP
 #   If you want to remove the mapped files at any point, you can set the clear_map_file to "Yes" and the list will be started over. E.g. if you set clear_map_files to Yes in QUEUE section, the mapped files will be those stated in the specific queue, the specific user and the specific app
