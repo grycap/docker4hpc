@@ -20,13 +20,21 @@ The current version of Docker4HPC is working for _Torque_, but we are in active 
 
 In the front-end
 1. Get Docker4HPC from its official repository
-```$ git clone https://github.com/grycap/docker4hpc```
+```bash
+$ git clone https://github.com/grycap/docker4hpc
+```
 2. Put the docker4hpc.py application in a folder that is accesible by the users 
-```$ mv docker4hpc /opt```
+```bash
+$ mv docker4hpc /opt
+```
 3. Modify the file /var/spool/torque.cfg and add the following line
-```SUBMITFILTER /opt/docker4hpc/docker4hpc.py```
+```bash
+SUBMITFILTER /opt/docker4hpc/docker4hpc.py
+```
 4. Create a configuration file from the example and modify it to customize to be used for your applications, users, queues and your deployment
-```cp /opt/docker4hpc/etc/docker4hpc.cfg-example /etc/docker4hpc.cfg```
+```bash
+cp /opt/docker4hpc/etc/docker4hpc.cfg-example /etc/docker4hpc.cfg
+```
 
 ### Optional steps
 In the configuration file you need to set the container images that will be used to run the jobs. The container images must be accesible from the internal nodes (these images will be retrieved by issuing a ```docker pull``` command). Take into account that you can use the _dockerhub.io_ repository, but it is also possible to set your private repository (e.g. in the front-end) and use it. Please refer to the docker documentation to create your private repository or open an issue and we'll try to explain.
